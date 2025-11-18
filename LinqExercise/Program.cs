@@ -28,6 +28,17 @@ namespace LinqExercise
             List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             List<int> evens = FilterList(numbers, IsEven);
             List<int> fiveOrMore = FilterList(numbers, x => x >= 5);
+
+          /*  List<Student> students = new List<Student>();
+
+            for (int i = 0; i < 7; i++)
+            {
+                Console.WriteLine("Enter student name:");
+                string name = Console.ReadLine();
+
+                students.Add(new Student { Name = name });
+            }
+          */
            
             #region שימוש בFUNC במקום פונקציה רגילה
             Func<List<int>, Predicate<int>, List<int>> FilterFunc = (lst, condition) =>
@@ -44,15 +55,15 @@ namespace LinqExercise
                     return result;
                 }
             };
-			#endregion
+            #endregion
 
-			#region שימוש בEXTENSIONS
-			//example of using extension methods
+            #region שימוש בEXTENSIONS
+            //example of using extension methods
 
-			#endregion
+            #endregion
 
-			#region שימוש בLINQ
-			List<Student> students = new List<Student>()
+            #region שימוש בLINQ
+            List<Student> students = new List<Student>()
             {
                 new Student() { Name = "Alice", Age = 20, grade = 90, ClassName = "Math" },
                 new Student() { Name = "Bob", Age = 22, grade = 85, ClassName = "Science" },
@@ -61,25 +72,29 @@ namespace LinqExercise
                 new Student() { Name = "Eve", Age = 20, grade = 88, ClassName = "Science" },
                 new Student() { Name = "Frank", Age = 24, grade = 92, ClassName = "Math" },
                 };
+            int maxAge = MaxBy(students, s => s.Age);
+            Console.WriteLine($"Max Age: {maxAge}");
 
-			#region דוגמאות LINQ
+            int maxGrade = MaxBy(students, s => s.grade);
+            Console.WriteLine($"Max Grade: {maxGrade}");
+            #region דוגמאות LINQ
 
-			//---Linq Methods---
-			//Max
-			//FirstOrDefault
-			//SingleOrDefault
-			//where
+            //---Linq Methods---
+            //Max
+            //FirstOrDefault
+            //SingleOrDefault
+            //where
             //where Query
-			//OrderBy
-			//Any
-			//Select
-            
+            //OrderBy
+            //Any
+            //Select
 
-			#endregion
-			#endregion
 
-			#region Test Monkey Exercise
-			//השלמת תרגיל הקופים מהחומר הנלמד
+            #endregion
+            #endregion
+
+            #region Test Monkey Exercise
+            //השלמת תרגיל הקופים מהחומר הנלמד
             MonkeyList monkeys = new MonkeyList(); // יצירת אובייקט של רשימת הקופים
 
             try
@@ -142,6 +157,24 @@ namespace LinqExercise
             }
 			#endregion
 		}
+        public static int MaxBy(List<Student>students,Func<Student, int> f)
+        {
+           int max = int.MinValue;
+            foreach (Student s in students)
+            {
+              
+                if (f(s) > max)
+                {
+                    max = f(s);
+                }
+            }
+            return max;
+
+
+
+
+
+        }
 	}
 }
 
