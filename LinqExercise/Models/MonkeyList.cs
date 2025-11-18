@@ -233,7 +233,7 @@ namespace LinqExercise.Models
                 Console.WriteLine(item.Location+"---->"+item.Count	);
 			}
 			
-
+			
 
         }
 		//10
